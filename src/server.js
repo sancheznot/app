@@ -3,6 +3,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const methodsOver = require('method-override');
 
 // ejecutamos el modulo dentro de esta cons, esta funcion nos devuelve un objeto
 // Initializations
@@ -21,6 +22,7 @@ app.set('view engine', '.hbs' );
 
 // Middlewares
 app.use(express.urlencoded({extended: false}));
+app.use(methodsOver('_method'))
 
 
 // Globals Variables

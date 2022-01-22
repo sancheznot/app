@@ -8,7 +8,7 @@ router.get('/note/add', renderNoteForm);
 router.post('/note/new-note', createNewNote);
 
 // GET ALL NOTE
-router.get('/note/', renderNotes);
+router.get('/note/allnotes', renderNotes);
 
 // EDIT NOTES
 router.get('/note/edit/:id', renderEditForm);

@@ -6,7 +6,7 @@ const NoteSchema = new Schema({
         type: 'string',
         require: true
     },
-    decription:{
+    description:{
         type: 'string',
         require: true
     }

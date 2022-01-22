@@ -2,18 +2,20 @@ const noteCtls = {};
 
 const Note = require('../models/Notes')
 
+// se encarga de recibir los datos desde el formulario
 noteCtls.renderNoteForm = (req, res) => {
     res.render('./notes/new-notes');
 };
-
-noteCtls.createNewNote = (req, res) => {
+// se encarga de agg notas a la base de datos
+noteCtls.createNewNote = async (req, res) => {
    const { title, description } = req.body;
-   new Note({title: title, description: description});
-   
+   const NewNote = new Note({title: title, description: description});
+   await NewNote.save();
 };
-
-noteCtls.renderNotes = (req, res) => {
-    res.send('holaa')
+// se encarga de buscar notas en la base de datos
+noteCtls.renderNotes = async (req, res) => {
+    const notes = await Note.find().lean()
+    res.render('./notes/allnotes', { notes });
 };
 
 noteCtls.renderEditForm = (req, res) => {

@@ -11,6 +11,7 @@ noteCtls.createNewNote = async (req, res) => {
    const { title, description } = req.body;
    const NewNote = new Note({title: title, description: description});
    await NewNote.save();
+   res.redirect('/note/allnotes')
 };
 // se encarga de buscar notas en la base de datos
 noteCtls.renderNotes = async (req, res) => {
@@ -26,8 +27,9 @@ noteCtls.updateNote = (req, res) => {
     res.send('update note')
 };
 
-noteCtls.deleteNote = (req, res) => {
-    res.send('delete note')
+noteCtls.deleteNote = async (req, res) => {
+    await Note.findByIdAndDelete(req.params.id);
+    res.redirect('/note/allnotes');
 };
 
 module.exports = noteCtls;

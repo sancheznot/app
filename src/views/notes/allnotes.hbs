@@ -8,7 +8,8 @@
                         
                     </h4>
                     <p>{{description}}</p>
-                    <form action="/note/delete/{{_id}}" method="POST">
+                    <form action="/note/delete/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE"> 
                         <button class="btn btn-danger btn-block btn-sm">
                             Delete
                         </button>

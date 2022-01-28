@@ -11,6 +11,7 @@ noteCtls.createNewNote = async (req, res) => {
    const { title, description } = req.body;
    const NewNote = new Note({title: title, description: description});
    await NewNote.save();
+   req.flash('success_msg', 'Note added Successfully');
    res.redirect('/note/allnotes')
 };
 // se encarga de buscar notas en la base de datos
@@ -26,12 +27,14 @@ noteCtls.renderEditForm = async (req, res) => {
 
 noteCtls.updateNote = async (req, res) => {
     const { title, description } = req.body;
-    await Note.findByIdAndUpdate(req.params.id, {title:title, description:description})
+    await Note.findByIdAndUpdate(req.params.id, {title:title, description:description});
+    req.flash('success_msg', 'Note Updated Successfully');
     res.redirect('/note/allnotes');
 };
 
 noteCtls.deleteNote = async (req, res) => {
     await Note.findByIdAndDelete(req.params.id);
+    req.flash('success_msg' , 'Delete Successfully');
     res.redirect('/note/allnotes');
 };
 

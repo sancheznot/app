@@ -4,6 +4,8 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const methodsOver = require('method-override');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 // ejecutamos el modulo dentro de esta cons, esta funcion nos devuelve un objeto
 // Initializations
@@ -22,11 +24,19 @@ app.set('view engine', '.hbs' );
 
 // Middlewares
 app.use(express.urlencoded({extended: false}));
-app.use(methodsOver('_method'))
-
+app.use(methodsOver('_method'));
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 
 // Globals Variables
-
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    next();
+});
 
 // Routes
 app.use(require('./routes/index.routes'));

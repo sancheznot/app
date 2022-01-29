@@ -17,12 +17,16 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Enter Notes
           </a>
+         
           <ul class="dropdown-menu ml-auto" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="/users/signin">Sing In</a></li>
-            <li><a class="dropdown-item" href="/users/signup">Sing up</a></li>
-            <li><a class="dropdown-item" href="/note/allnotes">All notes</a></li>
-            <li><a class="dropdown-item" href="/note/add">Add new note</a></li>
-            <li><a class="dropdown-item" href="/logOut">Logout</a></li>
+            {{#if user}}
+              <li><a class="dropdown-item" href="/note/allnotes">All notes</a></li>
+              <li><a class="dropdown-item" href="/note/add">Add new note</a></li>
+              <li><a class="dropdown-item" href="/users/logout">Logout</a></li>
+            {{else}} 
+              <li><a class="dropdown-item" href="/users/signin">Sing In</a></li>
+              <li><a class="dropdown-item" href="/users/signup">Sing up</a></li>
+            {{/if}}
 
           </ul>
         </li>

@@ -9,6 +9,10 @@ const NoteSchema = new Schema({
     description:{
         type: 'string',
         require: true
+    },
+    user: {
+        type: 'string',
+        required: true
     }
 
 }, {
